@@ -11,8 +11,8 @@ def validate_parent_dir(key, val, env):
         raise UserError("'%s' is not a directory: %s" % (key, os.path.dirname(val)))
 
 
-libname = "EXTENSION-NAME"
-projectdir = "demo"
+libname = "grafic_solver"
+projectdir = "grafic3"
 
 localEnv = Environment(tools=["default"], PLATFORM="")
 
@@ -65,7 +65,9 @@ library = env.SharedLibrary(
     source=sources,
 )
 
-copy = env.InstallAs("{}/bin/{}/lib{}".format(projectdir, env["platform"], file), library)
+copy = env.InstallAs(
+    "{}/bin/{}/lib{}".format(projectdir, env["platform"], file), library
+)
 
 default_args = [library, copy]
 if localEnv.get("compiledb", False):
